@@ -6,13 +6,7 @@ namespace PB {
    static const float PI = 3.14159265359f;
 
    template<typename T>
-   struct Angle
-   {
-	  T univalue;
-
-	  bl is_rad = false;
-	  bl is_degree = false;
-   };
+   struct Angle;
 
    template<typename T>
    Angle<T> make_degree(T deg);
