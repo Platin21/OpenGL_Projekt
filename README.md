@@ -8,4 +8,5 @@ Needs:
 <br>
 3. Some Windows Libs all Described in .pro file 
    Should be Pre installed
+ <br>
 4. Windows (Don't kow if it works on linux)
