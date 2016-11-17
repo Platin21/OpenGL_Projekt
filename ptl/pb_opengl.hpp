@@ -44,7 +44,20 @@ namespace PB {
 	template<typename T>
 	class Matrix3x3 : Interface_Matrix
 	{
+	   void x_rotate(T x)
+	   {
 
+	   }
+
+	   void y_rotate(T y)
+	   {
+
+	   }
+
+	   void z_rotate(T z)
+	   {
+
+	   }
 
 
 		//@INFO: Array Whit 3 times 3 Elements

@@ -4,6 +4,7 @@ Date:	    22.10.2016
 Licence:    GPL
 */
 #pragma once;
+
 //[Window Libaray Include + Context Loader
 #include <GLEW\glew.h>
 #include <GLFW\glfw3.h>
@@ -12,6 +13,7 @@ Licence:    GPL
 //[Some Standart Libarrays
 #include <math.h>
 #include <iostream>
+#include <cstdlib>
 //]Some Standart Libarrays
 
 //[PB Lib includes
@@ -20,15 +22,13 @@ Licence:    GPL
 #include "ptl/pb_opengl.hpp"
 //]PB Lib includes
 
+//Not Needet
+   //#include "ptl/pb_stream.hpp"
+
 
 //[Own Includes Projekt Internal
 #include "shader.hpp"
 //]Own Includes Projekt Internal
-
-//[Some defines For Esetetics
-#define glPointSize(sz) glPointSize(sz)
-//]Some defines For Esetetics
-
 
 //@NOTE: Disable argv argc warning
 #pragma warning(disable: 4100)
@@ -36,16 +36,8 @@ Licence:    GPL
 //TODO: Do Something whit the Arguments passed to the programm
 int main(int argv,char ** argc)
 {
-
-	PB::Vector2D<PB::f16> v(0.45f,0.45f);
-
-	//NOTE: Works Fine Probably Allow more ?
-	v += { -0.5f , 4.5f };
-
-	std::cout << v << std::endl;
-
 	//NOTE: Only for Testing purepose
-/*
+
 
 	//[TODO: Remove this stuff to PB::window
 		GLFWwindow* window;
@@ -66,7 +58,7 @@ int main(int argv,char ** argc)
 		{
 			//Terminate GLFW if the window could not be Created
 			glfwTerminate();
-			std::cerr << "Could not Create Window" << std::endl;
+			std::cerr << "Could not Create Window" << '\n';
 		}
 		//]Window Creation Error Handling
 
@@ -145,7 +137,6 @@ int main(int argv,char ** argc)
 	glfwTerminate();
 	//]TODO: Move to PB::window
 
-*/
 
 	ret 0;
 }
