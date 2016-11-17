@@ -12,6 +12,30 @@
 #include <ptl/pb_angle.hpp>
 //]Internal Includes
 
+//@NOTE: HERE IS THE SOLUTION 3x3
+/*
+		Result[0][0] =
+						m1[0][0] * m2[0][0] + m1[1][0] * m2[0][1] + m1[2][0] * m2[0][2];
+		Result[0][1] =
+						m1[0][1] * m2[0][0] + m1[1][1] * m2[0][1] + m1[2][1] * m2[0][2];
+		Result[0][2] =
+						m1[0][2] * m2[0][0] + m1[1][2] * m2[0][1] + m1[2][2] * m2[0][2];
+		Result[1][0] =
+						m1[0][0] * m2[1][0] + m1[1][0] * m2[1][1] + m1[2][0] * m2[1][2];
+		Result[1][1] =
+						m1[0][1] * m2[1][0] + m1[1][1] * m2[1][1] + m1[2][1] * m2[1][2];
+		Result[1][2] =
+						m1[0][2] * m2[1][0] + m1[1][2] * m2[1][1] + m1[2][2] * m2[1][2];
+		Result[2][0] =
+						m1[0][0] * m2[1][0] + m1[1][0] * m2[2][1] + m1[2][0] * m2[2][2];
+		Result[2][1] =
+						m1[0][1] * m2[2][0] + m1[1][1] * m2[2][1] + m1[2][1] * m2[2][2];
+		Result[2][2] =
+						m1[0][2] * m2[1][0] + m1[1][2] * m2[2][1] + m1[2][2] * m2[2][2];
+		return Result;
+*/
+
+
 namespace PB {
 	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 	struct color
@@ -31,6 +55,10 @@ namespace PB {
 		  virtual void x_tranform()		 = 0;
 		  virtual void y_tranform()		 = 0;
 		  virtual void z_tranform()		 = 0;
+		  virtual void    x_scale()		 = 0;
+		  virtual void    y_scale()		 = 0;
+		  virtual void    z_scale()		 = 0;
+		  virtual void      clear()	     = 0;
 	};
 
 	//TODO: Implement Interface_Matrix
@@ -44,21 +72,59 @@ namespace PB {
 	template<typename T>
 	class Matrix3x3 : Interface_Matrix
 	{
+	 public:
 	   void x_rotate(T x)
 	   {
-
+		  T mt[3][3];
+		  mt[0][0] = 0; mt[0][1] = 0; mt[0][2] = 0;
+		  mt[1][0] = 0; mt[1][1] = 0; mt[1][2] = 0;
+		  mt[2][0] = 0; mt[2][1] = 0; mt[2][2] = 0;
 	   }
 
 	   void y_rotate(T y)
 	   {
+		  T mt[3][3];
+		  T rad = to_radiants<T>(y);
 
+		  mt[0][0] = 0; mt[0][1] = 0; mt[0][2] = 0;
+		  mt[1][0] = 0; mt[1][1] = 0; mt[1][2] = 0;
+		  mt[2][0] = 0; mt[2][1] = 0; mt[2][2] = 0;
 	   }
 
 	   void z_rotate(T z)
 	   {
-
+		  T mt[3][3];
+		  mt[0][0] = 0; mt[0][1] = 0; mt[0][2] = 0;
+		  mt[1][0] = 0; mt[1][1] = 0; mt[1][2] = 0;
+		  mt[2][0] = 0; mt[2][1] = 0; mt[2][2] = 0;
 	   }
+	  private:
+	   void mul(T mt[3][3])
+	   {
+		  T tm[3][3]{0};
 
+		  //@INFO: Easy way of doing Matrix Muliplication
+		  tm[0][0] = mt[0][0] * m[0][0] + mt[1][0] * m[0][1] + mt[2][0] * m[0][2];
+		  tm[0][1] = mt[0][1] * m[0][0] + mt[1][1] * m[0][1] + mt[2][1] * m[0][2];
+		  tm[0][2] = mt[0][2] * m[0][0] + mt[1][2] * m[0][1] + mt[2][2] * m[0][2];
+		  tm[1][0] = mt[0][0] * m[1][0] + mt[1][0] * m[1][1] + mt[2][0] * m[1][2];
+		  tm[1][1] = mt[0][1] * m[1][0] + mt[1][1] * m[1][1] + mt[2][1] * m[1][2];
+		  tm[1][2] = mt[0][2] * m[1][0] + mt[1][2] * m[1][1] + mt[2][2] * m[1][2];
+		  tm[2][0] = mt[0][0] * m[1][0] + mt[1][0] * m[2][1] + mt[2][0] * m[2][2];
+		  tm[2][1] = mt[0][1] * m[2][0] + mt[1][1] * m[2][1] + mt[2][1] * m[2][2];
+		  tm[2][2] = mt[0][2] * m[1][0] + mt[1][2] * m[2][1] + mt[2][2] * m[2][2];
+
+
+		  for(int x = 0; i < 3; ++i)
+		  {
+			 for(int y = 0; i < 3; ++i)
+			 {
+			   m[x][y] = tm[x][y];
+			 }
+		  }
+
+		  return Result;
+	   }
 
 		//@INFO: Array Whit 3 times 3 Elements
 		T m[3][3];

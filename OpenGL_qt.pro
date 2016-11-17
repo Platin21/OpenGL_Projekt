@@ -35,3 +35,7 @@ INCLUDEPATH = $$PWD/INCLUDE/
 OTHER_FILES = fshader.frag \
               vshader.vert
 
+DISTFILES += \
+    build/fshader.frag \
+    build/vshader.vert
+
